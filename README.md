@@ -12,6 +12,12 @@ It facilitates the setup of essential directories and files, streamlining the in
 - **Docker and DevContainer Support**: Provides Dockerfile and DevContainer configurations for containerized development environments.
 - **CI/CD Workflow Integration**: Includes GitHub Actions workflow files for continuous integration and deployment.
 
+## Installation
+
+```sh
+pip install code-smith
+```
+
 ## Usage
 
 1. **Clone the Repository**:

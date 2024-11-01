@@ -1,15 +1,15 @@
 import os
-from smart_py.content import setup_file_content
-from smart_py.content import pre_commit_config_content
-from smart_py.content import publish_yaml_content
-from smart_py.content import post_create_sh_content
-from smart_py.content import dev_requirements_txt_content
-from smart_py.content import gitignore_content
-from smart_py.content import readme_content
-from smart_py.content import devcontainer_json_content
-from smart_py.content import dockerfile_content
-from smart_py.content import post_create_sh_content
-from smart_py.content import requirements_txt_content
+from code_smith.content import setup_file_content
+from code_smith.content import pre_commit_config_content
+from code_smith.content import publish_yaml_content
+from code_smith.content import post_create_sh_content
+from code_smith.content import dev_requirements_txt_content
+from code_smith.content import gitignore_content
+from code_smith.content import readme_content
+from code_smith.content import devcontainer_json_content
+from code_smith.content import dockerfile_content
+from code_smith.content import post_create_sh_content
+from code_smith.content import requirements_txt_content
 
 
 class FileCreator:
