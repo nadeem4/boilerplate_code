@@ -1,0 +1,54 @@
+
+
+import argparse
+from .package_structure import PackageStructure
+from .file_creator import FileCreator
+
+def print_pypi_instructions():
+        print("""
+To publish your package, you need to create a PyPI API token and add it as a GitHub secret:
+
+Step 1: Generate a PyPI API Token
+1. Log in to your PyPI account: https://pypi.org/
+2. Go to 'Account settings' and create a new API token.
+3. Copy the token immediately as it will not be shown again.
+
+Step 2: Save the API Token as a GitHub Secret
+1. Go to your GitHub repository.
+2. Navigate to 'Settings' > 'Secrets and variables' > 'Actions'.
+3. Click 'New repository secret'.
+4. Name the secret 'PYPI_API_TOKEN' and paste the token.
+5. Click 'Add secret'.
+
+The GitHub Actions workflow will use this secret to publish your package to PyPI.
+""")
+
+def main():
+    parser = argparse.ArgumentParser(description="Generate a Python package structure with optional Docker support.")
+    parser.add_argument('package_name', type=str, help='The name of the package to create.')
+    parser.add_argument('--docker_image', type=str, default='python:3.9-slim', help='The Docker image to use (default: python:3.9-slim).')
+    args = parser.parse_args()
+
+    # Create package structure and files
+    package_structure = PackageStructure(args.package_name, args.docker_image)
+    package_structure.create_directories()
+
+    file_creator = FileCreator(args.package_name, args.docker_image)
+    file_creator.create_init_file()
+    file_creator.create_setup_file()
+    file_creator.create_readme()
+    file_creator.create_license()
+    file_creator.create_test_init()
+    file_creator.create_gitignore()
+    file_creator.create_requirements()
+    file_creator.create_dev_requirements()
+    file_creator.create_devcontainer_json()
+    file_creator.create_dockerfile()
+    file_creator.create_publish_yml()
+
+    print(f"Successfully created Python package: {args.package_name} with Docker Image: {args.docker_image} and devcontaier support.")
+    print_pypi_instructions()
+
+
+if __name__ == "__main__":
+    main()
