@@ -1,15 +1,15 @@
 import os
-from code_smith.content import setup_file_content
-from code_smith.content import pre_commit_config_content
-from code_smith.content import publish_yaml_content
-from code_smith.content import post_create_sh_content
-from code_smith.content import dev_requirements_txt_content
-from code_smith.content import gitignore_content
-from code_smith.content import readme_content
-from code_smith.content import devcontainer_json_content
-from code_smith.content import dockerfile_content
-from code_smith.content import post_create_sh_content
-from code_smith.content import requirements_txt_content
+from pkg_wizard.content import setup_file_content
+from pkg_wizard.content import pre_commit_config_content
+from pkg_wizard.content import publish_yaml_content
+from pkg_wizard.content import post_create_sh_content
+from pkg_wizard.content import dev_requirements_txt_content
+from pkg_wizard.content import gitignore_content
+from pkg_wizard.content import readme_content
+from pkg_wizard.content import devcontainer_json_content
+from pkg_wizard.content import dockerfile_content
+from pkg_wizard.content import post_create_sh_content
+from pkg_wizard.content import requirements_txt_content
 
 
 class FileCreator:

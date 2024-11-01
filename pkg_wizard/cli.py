@@ -69,8 +69,8 @@ def main():
     os.environ["PACKAGE_NAME"] = args.package_name
     os.environ["BASE_IMAGE"] = args.docker_image
 
-    from code_smith.package_structure import PackageStructure
-    from code_smith.file_creator import FileCreator
+    from pkg_wizard.package_structure import PackageStructure
+    from pkg_wizard.file_creator import FileCreator
 
     # Create package structure and files
     package_structure = PackageStructure(args.package_name, args.docker_image)

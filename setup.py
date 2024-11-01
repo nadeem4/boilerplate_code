@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="code-smith",
+    name="pkg_wizard",
     version="1.0.0",
     description="Generate a Python package structure with optional Docker support.",
     long_description=open("README.md").read(),
@@ -14,8 +14,8 @@ setup(
     install_requires=[],
     entry_points={
         "console_scripts": [
-            "gps=code_smith.cli:main",
-            "ppi=code_smith.cli:print_pypi_instructions",
+            "gps=pkg_wizard.cli:main",
+            "ppi=pkg_wizard.cli:print_pypi_instructions",
         ],
     },
     classifiers=[
