@@ -11,8 +11,7 @@ setup(
     url="https://github.com/nadeem4/boilerplate_code",
     license="MIT",
     packages=find_packages(),
-    install_requires=[
-    ],
+    install_requires=[],
     entry_points={
         "console_scripts": [
             "gps=smart_py.cli:main",

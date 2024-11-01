@@ -6,12 +6,18 @@
         "vscode": {
             "extensions": [
                 "ms-python.python",
-                "ms-python.vscode-pylance"
+                "ms-python.vscode-pylance",
+                "mhutchie.git-graph",
+                "eamodio.gitlens",
+                "GitHub.copilot-chat",
+                "GitHub.copilot"
             ]
-        }      
+        }
     },
     "forwardPorts": [],
-    "postCreateCommand": "pip install -r dev_requirements.txt",
+    "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
+	"runArgs": ["--env-file",".devcontainer/devcontainer.env"],
+	"postCreateCommand": "sh .devcontainer/post-create.sh ${containerWorkspaceFolder}",
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {
             "moby": true,
