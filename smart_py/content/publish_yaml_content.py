@@ -1,4 +1,4 @@
-name: Publish Python Package
+content = """name: Publish Python Package
 
 on:
 push:
@@ -30,3 +30,6 @@ build:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
         password: ${{ secrets.PYPI_API_TOKEN }}
+"""
+
+file_name = "publish.yml"
