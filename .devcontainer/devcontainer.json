@@ -10,7 +10,8 @@
                 "mhutchie.git-graph",
                 "eamodio.gitlens",
                 "GitHub.copilot-chat",
-                "GitHub.copilot"
+                "GitHub.copilot",
+                "github.vscode-github-actions"
             ]
         }
     },
