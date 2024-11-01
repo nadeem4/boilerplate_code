@@ -4,9 +4,6 @@
     "context": "..",
     "customizations": {
         "vscode": {
-            "settings": {
-                "terminal.integrated.shell.linux": "/bin/bash"
-            },
             "extensions": [
                 "ms-python.python",
                 "ms-python.vscode-pylance"
@@ -14,5 +11,23 @@
         }      
     },
     "forwardPorts": [],
-    "postCreateCommand": "pip install -r dev_requirements.txt"
+    "postCreateCommand": "pip install -r dev_requirements.txt",
+    "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {
+            "moby": true,
+            "azureDnsAutoDetection": true,
+            "installDockerBuildx": true,
+            "installDockerComposeSwitch": true,
+            "version": "latest",
+            "dockerDashComposeVersion": "latest"
+        },
+        "ghcr.io/devcontainers/features/git:1": {
+            "ppa": true,
+            "version": "latest"
+        },
+        "ghcr.io/devcontainers/features/github-cli:1": {
+            "installDirectlyFromGitHubRelease": true,
+            "version": "latest"
+        }
+    }
 }
