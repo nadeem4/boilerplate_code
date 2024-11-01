@@ -26,7 +26,13 @@ It facilitates the setup of essential directories and files, streamlining the in
    cd boilerplate_code
    ```
 
-3. **Run the Script**:
+3. **Install Package**
+
+   ```sh
+   pip install .
+   ```
+
+4. **Run the Script**:
 
    ```sh
    gps <package_name> [--docker_image <docker_image>] [--override <file1> <file2> ...]
