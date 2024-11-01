@@ -1,5 +1,5 @@
 {
-    "name": "sample_package",
+    "name": "sample_package_py",
     "dockerFile": "Dockerfile",
     "context": "..",
     "customizations": {

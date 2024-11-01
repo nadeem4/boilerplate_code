@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="sample_package",
+    name="sample_package_py",
     version="0.1.0",
     packages=find_packages(),
     install_requires=[],
@@ -10,7 +10,7 @@ setup(
     description="A description of your package.",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/sample_package",
+    url="https://github.com/yourusername/sample_package_py",
     classifiers=[
         "Programming Language :: Python :: 3",
     ],
@@ -23,7 +23,7 @@ setup(
     },
     entry_points={
         "console_scripts": [
-            "sample_package=sample_package.cli:main",
+            "sample_package_py=sample_package_py.cli:main",
         ],
     },
 )

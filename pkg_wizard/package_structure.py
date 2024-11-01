@@ -26,10 +26,9 @@ class PackageStructure:
         self.docker_image = docker_image
         self.dirs = [
             package_name,
-            os.path.join(package_name, package_name),
-            os.path.join(package_name, "tests"),
-            os.path.join(package_name, ".devcontainer"),
-            os.path.join(package_name, ".github", "workflows"),
+            "tests",
+            ".devcontainer",
+            os.path.join(".github", "workflows"),
         ]
 
     def create_directories(self):

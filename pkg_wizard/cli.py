@@ -88,11 +88,12 @@ def main():
     file_creator.create_post_create_sh()
     file_creator.create_dockerfile()
     file_creator.create_publish_yml()
+    file_creator.create_pre_commit_config()
 
     print(
         f"Successfully created Python package: {args.package_name} with Docker Image: {args.docker_image} and devcontaier support.\n"
     )
-    # print_pypi_instructions()
+    print_pypi_instructions()
 
 
 if __name__ == "__main__":

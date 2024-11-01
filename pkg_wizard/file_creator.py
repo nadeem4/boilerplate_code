@@ -62,7 +62,7 @@ class FileCreator:
         Raises:
             OSError: If there are issues creating the file.
         """
-        init_path = os.path.join(self.package_name, self.package_name, "__init__.py")
+        init_path = os.path.join(self.package_name, "__init__.py")
         content = f'"""Initialize the {self.package_name} package."""\n'
         self.create_file(init_path, content)
 
@@ -78,7 +78,7 @@ class FileCreator:
             FileNotFoundError: If the README.md file is not found.
             OSError: If an error occurs while creating the setup.py file.
         """
-        setup_path = os.path.join(self.package_name, setup_file_content.file_name)
+        setup_path = os.path.join(setup_file_content.file_name)
         content = setup_file_content.content
         self.create_file(setup_path, content)
 
@@ -94,7 +94,7 @@ class FileCreator:
             FileNotFoundError: If the package directory does not exist.
             PermissionError: If the user does not have permission to create the README file.
         """
-        readme_path = os.path.join(self.package_name, readme_content.file_name)
+        readme_path = os.path.join(readme_content.file_name)
         content = readme_content.content
         self.create_file(readme_path, content)
 
@@ -111,7 +111,7 @@ class FileCreator:
         Raises:
             FileNotFoundError: If the specified path for the __init__.py file does not exist.
         """
-        test_init_path = os.path.join(self.package_name, "tests", "__init__.py")
+        test_init_path = os.path.join("tests", "__init__.py")
         content = f'"""Initialize the test module for {self.package_name} package."""\n'
         self.create_file(test_init_path, content)
 
@@ -123,7 +123,7 @@ class FileCreator:
         Raises:
             OSError: If there is an issue creating the .gitignore file.
         """
-        gitignore_path = os.path.join(self.package_name, gitignore_content.file_name)
+        gitignore_path = os.path.join(gitignore_content.file_name)
         content = gitignore_content.content
         self.create_file(gitignore_path, content)
 
@@ -135,9 +135,7 @@ class FileCreator:
         Raises:
             OSError: If an error occurs while creating the requirements.txt file.
         """
-        requirements_path = os.path.join(
-            self.package_name, requirements_txt_content.file_name
-        )
+        requirements_path = os.path.join(requirements_txt_content.file_name)
         content = requirements_txt_content.content
         self.create_file(requirements_path, content)
 
@@ -153,9 +151,7 @@ class FileCreator:
             FileNotFoundError: If the package directory does not exist.
             OSError: If there is an issue creating the 'dev_requirements.txt' file.
         """
-        dev_requirements_path = os.path.join(
-            self.package_name, dev_requirements_txt_content.file_name
-        )
+        dev_requirements_path = os.path.join(dev_requirements_txt_content.file_name)
         content = dev_requirements_txt_content.content
         self.create_file(dev_requirements_path, content)
 
@@ -171,7 +167,7 @@ class FileCreator:
         Raises:
             None
         """
-        devcontainer_dir = os.path.join(self.package_name, ".devcontainer")
+        devcontainer_dir = os.path.join(".devcontainer")
         devcontainer_json_path = os.path.join(
             devcontainer_dir, devcontainer_json_content.file_name
         )
@@ -186,7 +182,7 @@ class FileCreator:
         Raises:
             None
         """
-        devcontainer_dir = os.path.join(self.package_name, ".devcontainer")
+        devcontainer_dir = os.path.join(".devcontainer")
         dockerfile_path = os.path.join(devcontainer_dir, dockerfile_content.file_name)
         content = dockerfile_content.content
         self.create_file(dockerfile_path, content)
@@ -199,7 +195,7 @@ class FileCreator:
         Raises:
             OSError: If an error occurs while creating the requirements.txt file.
         """
-        devcontainer_dir = os.path.join(self.package_name, ".devcontainer")
+        devcontainer_dir = os.path.join(".devcontainer")
         post_create = os.path.join(devcontainer_dir, post_create_sh_content.file_name)
         content = post_create_sh_content.content
         self.create_file(post_create, content)
@@ -216,7 +212,7 @@ class FileCreator:
         Raises:
             OSError: If there is an issue creating the publish.yml file.
         """
-        workflows_dir = os.path.join(self.package_name, ".github", "workflows")
+        workflows_dir = os.path.join(".github", "workflows")
         publish_yml_path = os.path.join(workflows_dir, publish_yaml_content.file_name)
         content = publish_yaml_content.content
         self.create_file(publish_yml_path, content)
@@ -232,8 +228,6 @@ class FileCreator:
         Raises:
             None
         """
-        pre_commit_config_path = os.path.join(
-            self.package_name, pre_commit_config_content.file_name
-        )
+        pre_commit_config_path = os.path.join(pre_commit_config_content.file_name)
         content = pre_commit_config_content.content
         self.create_file(pre_commit_config_path, content)

@@ -1,8 +1,8 @@
-# sample_package
+# sample_package_py
 
 ## Overview
 
-sample_package is a Python package that provides functionality for [describe the purpose of the package here]. This package is designed to help [target audience] achieve [specific goals].
+sample_package_py is a Python package that provides functionality for [describe the purpose of the package here]. This package is designed to help [target audience] achieve [specific goals].
 
 ## Features
 
@@ -15,7 +15,7 @@ sample_package is a Python package that provides functionality for [describe the
 To install the package, use the following command:
 
 ```
-pip install sample_package
+pip install sample_package_py
 ```
 
 ## Contributing
