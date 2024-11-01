@@ -15,7 +15,7 @@ It facilitates the setup of essential directories and files, streamlining the in
 ## Installation
 
 ```sh
-pip install code-smith
+pip install pkg-wizard
 ```
 
 ## Usage
