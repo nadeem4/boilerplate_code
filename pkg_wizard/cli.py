@@ -83,13 +83,17 @@ def main():
     os.environ["PACKAGE_NAME"] = args.package_name
     os.environ["BASE_IMAGE"] = args.docker_image
     print(args.sub_dirs)
+    # ['units,core']
+    if args.sub_dirs:
+        dirs = args.sub_dirs[0]
+        dirs = dirs.split(",")
+    else:
+        dirs = []
 
     from pkg_wizard.package_structure import PackageStructure
 
     # Create package structure and files
-    package_structure = PackageStructure(
-        args.package_name, args.docker_image, args.sub_dirs
-    )
+    package_structure = PackageStructure(args.package_name, args.docker_image, dirs)
     package_structure.create_directories()
     ConfigurationSupport([]).create_files()
     DockerSupport([]).create_files()
@@ -97,7 +101,7 @@ def main():
     PreCommitSupport([]).create_files()
     TestSupport([]).create_test_init()
     DevContainerSupport([]).create_files()
-    InitDir(args.sub_dirs).create_init_file()
+    InitDir().create_init_file(args.package_name, dirs)
 
     print(
         f"Successfully created Python package: {args.package_name} with Docker Image: {args.docker_image} and devcontaier support.\n"

@@ -22,9 +22,9 @@ class PreCommitSupport:
         file_name, content = read_file(
             get_file_path(self.folder_name, ".pre-commit-config.yaml")
         )
-        override = True if file_name in self.override_files else False
+        overwrite = True if file_name in self.override_files else False
         pre_commit_config_path = os.path.join(file_name)
-        create_file(pre_commit_config_path, content, override=override)
+        create_file(pre_commit_config_path, content, overwrite=overwrite)
 
     def create_files(self):
         self.create_pre_commit_config()

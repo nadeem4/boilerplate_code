@@ -17,9 +17,9 @@ class ConfigurationSupport:
             OSError: If there is an issue creating the .gitignore file.
         """
         file_name, content = read_file(get_file_path(self.folder_name, ".gitignore"))
-        override = True if file_name in self.override_files else False
+        overwrite = True if file_name in self.override_files else False
         gitignore_path = os.path.join(file_name)
-        create_file(gitignore_path, content, override=override)
+        create_file(gitignore_path, content, overwrite=overwrite)
 
     def create_requirements(self):
         """Create a requirements.txt file for the package.
@@ -32,9 +32,9 @@ class ConfigurationSupport:
         file_name, content = read_file(
             get_file_path(self.folder_name, "requirements.txt")
         )
-        override = True if file_name in self.override_files else False
+        overwrite = True if file_name in self.override_files else False
         requirements_path = os.path.join(file_name)
-        create_file(requirements_path, content, override=override)
+        create_file(requirements_path, content, overwrite=overwrite)
 
     def create_dev_requirements(self):
         """Create a 'dev_requirements.txt' file with specified development dependencies.
@@ -51,9 +51,9 @@ class ConfigurationSupport:
         file_name, content = read_file(
             get_file_path(self.folder_name, "dev_requirements.txt")
         )
-        override = True if file_name in self.override_files else False
+        overwrite = True if file_name in self.override_files else False
         dev_requirements_path = os.path.join(file_name)
-        create_file(dev_requirements_path, content, override=override)
+        create_file(dev_requirements_path, content, overwrite=overwrite)
 
     def create_readme(self):
         """Generate a README file for the Python package.
@@ -68,9 +68,9 @@ class ConfigurationSupport:
             PermissionError: If the user does not have permission to create the README file.
         """
         file_name, content = read_file(get_file_path(self.folder_name, "readme.md"))
-        override = True if file_name in self.override_files else False
+        overwrite = True if file_name in self.override_files else False
         readme_path = os.path.join(file_name)
-        create_file(readme_path, content, override=override)
+        create_file(readme_path, content, overwrite=overwrite)
 
     def create_setup_file(self):
         """Creates a setup.py file for the package.
@@ -85,9 +85,9 @@ class ConfigurationSupport:
             OSError: If an error occurs while creating the setup.py file.
         """
         file_name, content = read_file(get_file_path(self.folder_name, "setup.py"))
-        override = True if file_name in self.override_files else False
+        overwrite = True if file_name in self.override_files else False
         setup_path = os.path.join(file_name)
-        create_file(setup_path, content, override=override)
+        create_file(setup_path, content, overwrite=overwrite)
 
     def create_files(self):
         """Create configuration files for the package.

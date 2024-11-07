@@ -17,9 +17,9 @@ class DockerSupport:
             None
         """
         file_name, content = read_file(get_file_path(self.folder_name, "Dockerfile"))
-        override = True if file_name in self.override_files else False
+        overwrite = True if file_name in self.override_files else False
         dockerfile_path = os.path.join(file_name)
-        create_file(dockerfile_path, content, override=override)
+        create_file(dockerfile_path, content, overwrite=overwrite)
 
     def create_files(self):
         self.create_dockerfile()

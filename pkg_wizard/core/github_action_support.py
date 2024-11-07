@@ -21,10 +21,10 @@ class GithubActionSupport:
             OSError: If there is an issue creating the publish.yml file.
         """
         file_name, content = read_file(get_file_path(self.folder_name, "publish.yml"))
-        override = True if file_name in self.override_files else False
+        overwrite = True if file_name in self.override_files else False
         workflows_dir = os.path.join(".github", "workflows")
         publish_yml_path = os.path.join(workflows_dir, file_name)
-        create_file(publish_yml_path, content, override=override)
+        create_file(publish_yml_path, content, overwrite=overwrite)
 
     def create_files(self):
         self.create_publish_yml()
