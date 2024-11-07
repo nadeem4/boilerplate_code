@@ -1,5 +1,5 @@
 {
-    "name": "smart_py",
+    "name": "<package_name>",
     "dockerFile": "Dockerfile",
     "context": "..",
     "customizations": {

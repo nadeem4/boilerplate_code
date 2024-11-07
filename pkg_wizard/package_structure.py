@@ -5,7 +5,7 @@ class PackageStructure:
     """A class that defines the structure of a Python package including directories and
     Docker image configuration."""
 
-    def __init__(self, package_name, docker_image="python:3.9-slim"):
+    def __init__(self, package_name, docker_image="python:3.9-slim", sub_dirs=[]):
         """Initialize a PackageBuilder object with the provided package name and
         optional Docker image.
 
@@ -29,7 +29,7 @@ class PackageStructure:
             "tests",
             ".devcontainer",
             os.path.join(".github", "workflows"),
-        ]
+        ] + [os.path.join(package_name, sub_dir) for sub_dir in sub_dirs]
 
     def create_directories(self):
         """Create directories based on the list of directories provided.
