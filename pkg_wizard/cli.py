@@ -1,5 +1,12 @@
 import argparse
 import os
+from pkg_wizard.core.configuration_support import ConfigurationSupport
+from pkg_wizard.core.docker_support import DockerSupport
+from pkg_wizard.core.github_action_support import GithubActionSupport
+from pkg_wizard.core.init_dir import InitDir
+from pkg_wizard.core.pre_commit_support import PreCommitSupport
+from pkg_wizard.core.test_support import TestSupport
+from pkg_wizard.core.dev_container_support import DevContainerSupport
 
 
 def print_pypi_instructions():
@@ -63,32 +70,34 @@ def main():
         default="python:3.9-slim",
         help="The Docker image to use (default: python:3.9-slim).",
     )
+    parser.add_argument(
+        "--sub_dirs",
+        nargs="*",
+        default=[],
+        help="The subdirectories to create in the package.",
+    )
+
     args = parser.parse_args()
 
     # set the package name in the environment variable
     os.environ["PACKAGE_NAME"] = args.package_name
     os.environ["BASE_IMAGE"] = args.docker_image
+    print(args.sub_dirs)
 
     from pkg_wizard.package_structure import PackageStructure
-    from pkg_wizard.file_creator import FileCreator
 
     # Create package structure and files
-    package_structure = PackageStructure(args.package_name, args.docker_image)
+    package_structure = PackageStructure(
+        args.package_name, args.docker_image, args.sub_dirs
+    )
     package_structure.create_directories()
-
-    file_creator = FileCreator(args.package_name, args.docker_image)
-    file_creator.create_init_file()
-    file_creator.create_setup_file()
-    file_creator.create_readme()
-    file_creator.create_test_init()
-    file_creator.create_gitignore()
-    file_creator.create_requirements()
-    file_creator.create_dev_requirements()
-    file_creator.create_devcontainer_json()
-    file_creator.create_post_create_sh()
-    file_creator.create_dockerfile()
-    file_creator.create_publish_yml()
-    file_creator.create_pre_commit_config()
+    ConfigurationSupport([]).create_files()
+    DockerSupport([]).create_files()
+    GithubActionSupport([]).create_files()
+    PreCommitSupport([]).create_files()
+    TestSupport([]).create_test_init()
+    DevContainerSupport([]).create_files()
+    InitDir(args.sub_dirs).create_init_file()
 
     print(
         f"Successfully created Python package: {args.package_name} with Docker Image: {args.docker_image} and devcontaier support.\n"

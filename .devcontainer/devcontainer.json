@@ -11,7 +11,10 @@
                 "eamodio.gitlens",
                 "GitHub.copilot-chat",
                 "GitHub.copilot",
-                "github.vscode-github-actions"
+                "github.vscode-github-actions",
+                "codezombiech.gitignore",
+                "VisualStudioExptTeam.vscodeintellicode",
+                "VisualStudioExptTeam.intellicode-api-usage-examples"
             ]
         }
     },

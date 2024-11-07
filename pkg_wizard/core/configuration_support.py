@@ -1,19 +1,12 @@
 import os
-from pkg_wizard.content import (
-    gitignore_content,
-    requirements_txt_content,
-    dev_requirements_txt_content,
-    readme_content,
-    setup_file_content,
-)
-from pkg_wizard.util.file_creator import FileCreator
+from pkg_wizard.utils.file import create_file, read_file, get_file_path
 
 
 class ConfigurationSupport:
 
     def __init__(self, override_files: list):
-        self.file_creator = FileCreator()
         self.override_files = override_files
+        self.folder_name = "configurations"
 
     def create_gitignore(self):
         """Create a .gitignore file for the package.
@@ -23,10 +16,10 @@ class ConfigurationSupport:
         Raises:
             OSError: If there is an issue creating the .gitignore file.
         """
-        override = True if gitignore_content.file_name in self.override_files else False
-        gitignore_path = os.path.join(gitignore_content.file_name)
-        content = gitignore_content.content
-        self.file_creator.create_file(gitignore_path, content, override=override)
+        file_name, content = read_file(get_file_path(self.folder_name, ".gitignore"))
+        override = True if file_name in self.override_files else False
+        gitignore_path = os.path.join(file_name)
+        create_file(gitignore_path, content, override=override)
 
     def create_requirements(self):
         """Create a requirements.txt file for the package.
@@ -36,11 +29,12 @@ class ConfigurationSupport:
         Raises:
             OSError: If an error occurs while creating the requirements.txt file.
         """
-        file_name = requirements_txt_content.file_name
+        file_name, content = read_file(
+            get_file_path(self.folder_name, "requirements.txt")
+        )
         override = True if file_name in self.override_files else False
         requirements_path = os.path.join(file_name)
-        content = requirements_txt_content.content
-        self.file_creator.create_file(requirements_path, content, override=override)
+        create_file(requirements_path, content, override=override)
 
     def create_dev_requirements(self):
         """Create a 'dev_requirements.txt' file with specified development dependencies.
@@ -54,11 +48,12 @@ class ConfigurationSupport:
             FileNotFoundError: If the package directory does not exist.
             OSError: If there is an issue creating the 'dev_requirements.txt' file.
         """
-        file_name = dev_requirements_txt_content.file_name
+        file_name, content = read_file(
+            get_file_path(self.folder_name, "dev_requirements.txt")
+        )
         override = True if file_name in self.override_files else False
-        dev_requirements_path = os.path.join(dev_requirements_txt_content.file_name)
-        content = dev_requirements_txt_content.content
-        self.file_creator.create_file(dev_requirements_path, content, override=override)
+        dev_requirements_path = os.path.join(file_name)
+        create_file(dev_requirements_path, content, override=override)
 
     def create_readme(self):
         """Generate a README file for the Python package.
@@ -72,11 +67,10 @@ class ConfigurationSupport:
             FileNotFoundError: If the package directory does not exist.
             PermissionError: If the user does not have permission to create the README file.
         """
-        file_name = readme_content.file_name
+        file_name, content = read_file(get_file_path(self.folder_name, "readme.md"))
         override = True if file_name in self.override_files else False
         readme_path = os.path.join(file_name)
-        content = readme_content.content
-        self.file_creator.create_file(readme_path, content, override=override)
+        create_file(readme_path, content, override=override)
 
     def create_setup_file(self):
         """Creates a setup.py file for the package.
@@ -90,8 +84,25 @@ class ConfigurationSupport:
             FileNotFoundError: If the README.md file is not found.
             OSError: If an error occurs while creating the setup.py file.
         """
-        file_name = setup_file_content.file_name
+        file_name, content = read_file(get_file_path(self.folder_name, "setup.py"))
         override = True if file_name in self.override_files else False
         setup_path = os.path.join(file_name)
-        content = setup_file_content.content
-        self.file_creator.create_file(setup_path, content, override=override)
+        create_file(setup_path, content, override=override)
+
+    def create_files(self):
+        """Create configuration files for the package.
+
+        This function creates configuration files for the package, including .gitignore, requirements.txt, dev_requirements.txt, README.md, and setup.py.
+
+        Returns:
+            None
+
+        Raises:
+            FileNotFoundError: If any of the configuration files are not found.
+            OSError: If there is an issue creating the configuration files.
+        """
+        self.create_gitignore()
+        self.create_requirements()
+        self.create_dev_requirements()
+        self.create_readme()
+        self.create_setup_file()

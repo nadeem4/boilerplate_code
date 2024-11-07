@@ -1,13 +1,12 @@
-from pkg_wizard.util.file_creator import FileCreator
-from pkg_wizard.content import dockerfile_content
+from pkg_wizard.utils.file import create_file, read_file, get_file_path
 import os
 
 
 class DockerSupport:
 
     def __init__(self, override_files: list):
-        self.file_creator = FileCreator()
         self.override_files = override_files
+        self.folder_name = "docker"
 
     def create_dockerfile(self):
         """Create a Dockerfile for the project.
@@ -17,8 +16,10 @@ class DockerSupport:
         Raises:
             None
         """
-        file_name = dockerfile_content.file_name
+        file_name, content = read_file(get_file_path(self.folder_name, "Dockerfile"))
         override = True if file_name in self.override_files else False
-        dockerfile_path = os.path.join(dockerfile_content.file_name)
-        content = dockerfile_content.content
-        self.file_creator.create_file(dockerfile_path, content, override=override)
+        dockerfile_path = os.path.join(file_name)
+        create_file(dockerfile_path, content, override=override)
+
+    def create_files(self):
+        self.create_dockerfile()

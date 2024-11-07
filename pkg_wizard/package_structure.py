@@ -29,7 +29,7 @@ class PackageStructure:
             "tests",
             ".devcontainer",
             os.path.join(".github", "workflows"),
-        ].append(os.path.join(package_name, sub_dir) for sub_dir in sub_dirs)
+        ] + [os.path.join(package_name, sub_dir) for sub_dir in sub_dirs]
 
     def create_directories(self):
         """Create directories based on the list of directories provided.

@@ -1,11 +1,10 @@
 import os
-from pkg_wizard.util.file_creator import FileCreator
+from pkg_wizard.utils.file import create_file
 
 
 class TestSupport:
 
     def __init__(self, override_files: list):
-        self.file_creator = FileCreator()
         self.override_files = override_files
 
     def create_test_init(self):
@@ -23,4 +22,4 @@ class TestSupport:
         """
         test_init_path = os.path.join("tests", "__init__.py")
         content = f'"""Initialize the test module."""\n'
-        self.file_creator.create_file(test_init_path, content)
+        create_file(test_init_path, content)

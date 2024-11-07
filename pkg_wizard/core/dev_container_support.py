@@ -1,17 +1,12 @@
-from pkg_wizard.util.file_creator import FileCreator
-from pkg_wizard.content import (
-    devcontainer_json_content,
-    post_create_sh_content,
-    devcontainer_env_content,
-)
+from pkg_wizard.utils.file import create_file, read_file, get_file_path
 import os
 
 
 class DevContainerSupport:
 
     def __init__(self, override_files: list):
-        self.file_creator = FileCreator()
         self.override_files = override_files
+        self.folder_name = "devcontainer"
 
     def create_devcontainer_json(self):
         """
@@ -25,14 +20,13 @@ class DevContainerSupport:
         Raises:
             None
         """
-        file_name = devcontainer_json_content.file_name
+        file_name, content = read_file(
+            get_file_path(self.folder_name, "devcontainer.json")
+        )
         override_files = self.override_files
         devcontainer_dir = os.path.join(".devcontainer")
         devcontainer_json_path = os.path.join(devcontainer_dir, file_name)
-        content = devcontainer_json_content.content
-        self.file_creator.create_file(
-            devcontainer_json_path, content, override=override_files
-        )
+        create_file(devcontainer_json_path, content, override=override_files)
 
     def create_post_create_sh(self):
         """
@@ -46,21 +40,25 @@ class DevContainerSupport:
         Raises:
             None
         """
-        file_name = post_create_sh_content.file_name
+        file_name, content = read_file(
+            get_file_path(self.folder_name, "post-create.sh")
+        )
         override_files = self.override_files
         devcontainer_dir = os.path.join(".devcontainer")
         post_create_sh_path = os.path.join(devcontainer_dir, file_name)
-        content = post_create_sh_content.content
-        self.file_creator.create_file(
-            post_create_sh_path, content, override=override_files
-        )
+        create_file(post_create_sh_path, content, override=override_files)
 
     def create_dev_container_env(self):
         """Creates a devcontainer.env directory in devcontainer.json."""
-        file_name = devcontainer_env_content.file_name
+        file_name, content = read_file(
+            get_file_path(self.folder_name, "devcontainer.env")
+        )
         devcontainer_dir = os.path.join(".devcontainer")
         devcontainer_env_path = os.path.join(devcontainer_dir, file_name)
-        content = devcontainer_env_content.content
-        self.file_creator.create_file(
-            devcontainer_env_path, content, override=self.override_files
-        )
+        create_file(devcontainer_env_path, content, override=self.override_files)
+
+    def create_files(self):
+        """Create all files for the devcontainer support."""
+        self.create_devcontainer_json()
+        self.create_post_create_sh()
+        self.create_dev_container_env()
