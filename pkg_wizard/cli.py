@@ -76,6 +76,41 @@ def main():
         default=[],
         help="The subdirectories to create in the package.",
     )
+    parser.add_argument(
+        "--exclude_features",
+        nargs="*",
+        default=[],
+        choices=[
+            "config",
+            "docker",
+            "github_actions",
+            "pre_commit",
+            "tests",
+            "dev_container",
+        ],
+        help="The features to exclude from the package.",
+    )
+    parser.add_argument(
+        "--include_features",
+        nargs="*",
+        default=[
+            "config",
+            "docker",
+            "github_actions",
+            "pre_commit",
+            "tests",
+            "dev_container",
+        ],
+        choices=[
+            "config",
+            "docker",
+            "github_actions",
+            "pre_commit",
+            "tests",
+            "dev_container",
+        ],
+        help="The features to include in the package (default: all features).",
+    )
 
     args = parser.parse_args()
 
