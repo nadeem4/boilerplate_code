@@ -1,32 +1,24 @@
-name: Publish Python Package
+repos:
+  - repo: https://github.com/PyCQA/docformatter
+    rev: v1.7.5  # Specify the version you want
+    hooks:
+      - id: docformatter
+        args:
+          - --in-place
+          - --recursive
+          - --wrap-summaries=88
+          - --wrap-descriptions=88
+        files: \.py$
 
-on:
-push:
-    tags:
-    - '*.*.*'
+  - repo: https://github.com/psf/black
+    rev: 24.10.0  # Specify the version of black you want
+    hooks:
+      - id: black
+        language_version: python3
 
-jobs:
-build:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Check out code
-        uses: actions/checkout@v3
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: debug-statements
+      - id: check-merge-conflict
 
-    - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-        python-version: '3.x'
-
-    - name: Install dependencies
-        run: |
-        python -m pip install --upgrade pip
-        pip install setuptools wheel
-
-    - name: Build package
-        run: |
-        python setup.py sdist bdist_wheel
-
-    - name: Publish package
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-        password: ${{ secrets.PYPI_API_TOKEN }}
