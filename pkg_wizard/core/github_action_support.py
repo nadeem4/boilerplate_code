@@ -4,7 +4,7 @@ import os
 
 class GithubActionSupport:
 
-    def __init__(self, override_files: list):
+    def __init__(self, override_files: list = []):
         self.override_files = override_files
         self.folder_name = "github_actions"
 

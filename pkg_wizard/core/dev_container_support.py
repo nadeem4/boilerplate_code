@@ -4,9 +4,10 @@ import os
 
 class DevContainerSupport:
 
-    def __init__(self, override_files: list):
+    def __init__(self, pakcage_name, override_files: list = []):
         self.override_files = override_files
         self.folder_name = "devcontainer"
+        self.package_name = pakcage_name
 
     def create_devcontainer_json(self):
         """
@@ -23,6 +24,7 @@ class DevContainerSupport:
         file_name, content = read_file(
             get_file_path(self.folder_name, "devcontainer.json")
         )
+        content = content.replace("{{package_name}}", self.package_name)
         overwrite = True if file_name in self.override_files else False
         devcontainer_dir = os.path.join(".devcontainer")
         devcontainer_json_path = os.path.join(devcontainer_dir, file_name)

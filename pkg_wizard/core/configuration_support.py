@@ -4,7 +4,7 @@ from pkg_wizard.utils.file import create_file, read_file, get_file_path
 
 class ConfigurationSupport:
 
-    def __init__(self, override_files: list):
+    def __init__(self, override_files: list = []):
         self.override_files = override_files
         self.folder_name = "configurations"
 

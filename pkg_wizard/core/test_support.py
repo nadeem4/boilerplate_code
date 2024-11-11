@@ -4,7 +4,7 @@ from pkg_wizard.utils.file import create_file
 
 class TestSupport:
 
-    def __init__(self, override_files: list):
+    def __init__(self, override_files: list = []):
         self.override_files = override_files
 
     def create_test_init(self):

@@ -3,7 +3,7 @@ import os
 
 
 class LLMSupport:
-    def __init__(self, override_files: list):
+    def __init__(self, override_files: list = []):
         self.override_files = override_files
         self.folder_name = "llm"
         self.target_dir = "llm"
@@ -102,20 +102,17 @@ class LLMSupport:
         llm_path = os.path.join(self.target_dir, file_name)
         create_file(llm_path, content, overwrite=overwrite)
 
-    def create_init_py(self):
-        """Creates the __init__.py file for the LLM package.
+    def create_init_file(self):
+        """Create an __init__.py file to initialize the package.
 
-        Returns:
-            None
+        This function generates an __init__.py file within the package directory to initialize the package.
 
         Raises:
-            OSError: If there is an issue creating the __init__.py file.
+            OSError: If there are issues creating the file.
         """
-        file_name = "__init__.py"
-        content = ""
-        overwrite = file_name in self.override_files
-        init_path = os.path.join(self.target_dir, file_name)
-        create_file(init_path, content, overwrite=overwrite)
+        init_path = os.path.join(self.target_dir, "__init__.py")
+        content = f'"""Initialize the LLM package."""\n'
+        create_file(init_path, content)
 
     def create_files(self):
         self.create_few_shot_learning_py()
@@ -124,4 +121,4 @@ class LLMSupport:
         self.create_env_apikey_handler_py()
         self.create_llm_util_py()
         self.create_llm_py()
-        self.create_init_py()
+        self.create_init_file()

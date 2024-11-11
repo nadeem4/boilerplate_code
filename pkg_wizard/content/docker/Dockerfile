@@ -1,4 +1,4 @@
-FROM {os.environ['BASE_IMAGE']}
+FROM {{docker_image}}
 
 # Install pip and upgrade it
 RUN pip install --upgrade pip
