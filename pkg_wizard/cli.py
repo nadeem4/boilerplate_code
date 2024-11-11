@@ -112,6 +112,13 @@ def main():
         help="The features to include in the package (default: all features).",
     )
 
+    # add llm support arg
+    parser.add_argument(
+        "--llm",
+        action="store_true",
+        help="Include support for the LLM package.",
+    )
+
     args = parser.parse_args()
 
     # set the package name in the environment variable
@@ -127,15 +134,24 @@ def main():
 
     from pkg_wizard.package_structure import PackageStructure
 
+    if args.llm:
+        dirs.append("llm")
+
     # Create package structure and files
     package_structure = PackageStructure(args.package_name, args.docker_image, dirs)
     package_structure.create_directories()
-    ConfigurationSupport([]).create_files()
-    DockerSupport([]).create_files()
-    GithubActionSupport([]).create_files()
-    PreCommitSupport([]).create_files()
-    TestSupport([]).create_test_init()
-    DevContainerSupport([]).create_files()
+    ConfigurationSupport(package_name=args.package_name).create_files()
+    DockerSupport(docker_image=args.docker_image).create_files()
+    GithubActionSupport().create_files()
+    PreCommitSupport().create_files()
+    TestSupport().create_test_init()
+    DevContainerSupport(pakcage_name=args.package_name).create_files()
+
+    if args.llm:
+        from pkg_wizard.core.llm_support import LLMSupport
+
+        LLMSupport(package_name=args.package_name).create_files()
+
     InitDir().create_init_file(args.package_name, dirs)
 
     print(

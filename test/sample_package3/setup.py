@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="{{package_name}}",
+    name="smart_py_with_llm",
     version="1.0.0",
     description="",
     long_description=open("readme.md").read(),

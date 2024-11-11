@@ -1,5 +1,5 @@
 {
-    "name": "{{package_name}}",
+    "name": "smart_py_with_llm",
     "dockerFile": "Dockerfile",
     "context": "..",
     "customizations": {

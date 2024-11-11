@@ -1,4 +1,4 @@
-FROM {{docker_image}}
+FROM python:3.9-slim
 
 # Install pip and upgrade it
 RUN pip install --upgrade pip
