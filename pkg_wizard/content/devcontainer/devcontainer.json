@@ -1,7 +1,8 @@
 {
     "name": "{{package_name}}",
-    "dockerFile": "Dockerfile",
-    "context": "..",
+    "build": {
+        "dockerfile": "../Dockerfile"
+    },
     "customizations": {
         "vscode": {
             "extensions": [
