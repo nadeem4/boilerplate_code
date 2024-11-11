@@ -4,9 +4,10 @@ from pkg_wizard.utils.file import create_file, read_file, get_file_path
 
 class ConfigurationSupport:
 
-    def __init__(self, override_files: list = []):
+    def __init__(self, package_name, override_files: list = []):
         self.override_files = override_files
         self.folder_name = "configurations"
+        self.package_name = package_name
 
     def create_gitignore(self):
         """Create a .gitignore file for the package.
@@ -68,6 +69,7 @@ class ConfigurationSupport:
             PermissionError: If the user does not have permission to create the README file.
         """
         file_name, content = read_file(get_file_path(self.folder_name, "readme.md"))
+        content = content.replace("{{package_name}}", self.package_name)
         overwrite = True if file_name in self.override_files else False
         readme_path = os.path.join(file_name)
         create_file(readme_path, content, overwrite=overwrite)
@@ -85,6 +87,7 @@ class ConfigurationSupport:
             OSError: If an error occurs while creating the setup.py file.
         """
         file_name, content = read_file(get_file_path(self.folder_name, "setup.py"))
+        content = content.replace("{{package_name}}", self.package_name)
         overwrite = True if file_name in self.override_files else False
         setup_path = os.path.join(file_name)
         create_file(setup_path, content, overwrite=overwrite)

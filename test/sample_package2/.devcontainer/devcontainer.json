@@ -1,8 +1,7 @@
 {
-    "name": "smart_python_project",
-    "build": {
-        "dockerfile": "../Dockerfile"
-    },
+    "name": "smart_py",
+    "dockerFile": "Dockerfile",
+    "context": "..",
     "customizations": {
         "vscode": {
             "extensions": [
@@ -20,9 +19,7 @@
         }
     },
     "forwardPorts": [],
-    "postStartCommand": [
-        "git config --global --add safe.directory ${containerWorkspaceFolder}"
-    ],
+    "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
 	"runArgs": ["--env-file",".devcontainer/devcontainer.env"],
 	"postCreateCommand": "sh .devcontainer/post-create.sh ${containerWorkspaceFolder}",
     "features": {

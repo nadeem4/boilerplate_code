@@ -134,10 +134,13 @@ def main():
 
     from pkg_wizard.package_structure import PackageStructure
 
+    if args.llm:
+        dirs.append("llm")
+
     # Create package structure and files
     package_structure = PackageStructure(args.package_name, args.docker_image, dirs)
     package_structure.create_directories()
-    ConfigurationSupport().create_files()
+    ConfigurationSupport(package_name=args.package_name).create_files()
     DockerSupport(docker_image=args.docker_image).create_files()
     GithubActionSupport().create_files()
     PreCommitSupport().create_files()
@@ -147,7 +150,7 @@ def main():
     if args.llm:
         from pkg_wizard.core.llm_support import LLMSupport
 
-        LLMSupport().create_files()
+        LLMSupport(package_name=args.package_name).create_files()
 
     InitDir().create_init_file(args.package_name, dirs)
 
