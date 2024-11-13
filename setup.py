@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="pkg_wizard",
-    version="1.1.0",
+    version="1.1.1",
     description="Generate a Python package structure with optional Docker support.",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
@@ -14,7 +14,7 @@ setup(
     install_requires=[],
     entry_points={
         "console_scripts": [
-            "gps=pkg_wizard.cli:main",
+            "generate=pkg_wizard.cli:main",
             "ppi=pkg_wizard.cli:print_pypi_instructions",
         ],
     },
