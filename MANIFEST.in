@@ -7,3 +7,4 @@ recursive-include pkg_wizard *.sh
 recursive-include pkg_wizard Dockerfile
 recursive-include pkg_wizard *.txt
 recursive-include pkg_wizard *.yaml
+recursive-include pkg_wizard *.md
