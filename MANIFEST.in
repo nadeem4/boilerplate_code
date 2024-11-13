@@ -1,0 +1,9 @@
+recursive-include pkg_wizard *.py
+recursive-include pkg_wizard *.yml
+recursive-include pkg_wizard .gitignore
+recursive-include pkg_wizard *.json
+recursive-include pkg_wizard *.env
+recursive-include pkg_wizard *.sh
+recursive-include pkg_wizard Dockerfile
+recursive-include pkg_wizard *.txt
+recursive-include pkg_wizard *.yaml
